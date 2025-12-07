@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCALE UP INC | Strategic Campaign Analysts Leading Elections with Unbiased Polls</title>
+    <meta name="description" content="Strategic Campaign Analysts Lleading Elections with Unbiased Polls">
+    
+    <!-- Fonts: Inter for clean, modern readability -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN for production-ready utility classes) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config for Custom Colors/Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff1f2', // Light Red/Rose
+                            100: '#ffe4e6',
+                            500: '#dc2626', // Primary Red
+                            600: '#b91c1c', // Darker Red
+                            900: '#000000', // Black text
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            /* Fix for ScrollTrigger pinning jitter */
+            overflow-x: hidden; 
+            background-color: #ffffff;
+            color: #0f172a;
+        }
+
+        /* Chart Animations */
+        .chart-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+        
+        .bar-rect {
+            transform-origin: bottom;
+            transform: scaleY(0);
+        }
+
+        /* Intro Overlay */
+        #intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Accessible Focus States */
+        *:focus-visible {
+            outline: 2px solid #dc2626;
+            outline-offset: 4px;
+        }
+
+        /* Map Grayscale Filter */
+        .map-container iframe {
+            filter: grayscale(100%) opacity(0.8);
+            transition: filter 0.3s;
+        }
+        .map-container iframe:hover {
+            filter: grayscale(0%) opacity(1);
+        }
+
+        /* Reduce Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        .about-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 700ms ease-in-out;
+}
+
+.about-slide.active {
+    opacity: 1;
+    position: relative;
+}
+
+/* custom util if not using arbitrary values */
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- INTRO ANIMATION OVERLAY -->
+<div id="intro-overlay">
+  <div class="relative w-full max-w-4xl mx-auto flex items-center justify-content-center h-full">
+    <!-- The Chart that draws behind text -->
+    <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 800 400" preserveAspectRatio="none">
+                <path id="intro-chart" class="chart-line" d="M0,350 Q100,300 200,320 T400,200 T600,100 T800,50" fill="none" stroke="#dc2626" stroke-width="8" />
+    </svg>
+    <!-- Logo instead of text -->
+    <img id="intro-logo" src="SULOGO.png" alt="SCALE UP Logo" class="w-32 h-auto z-10 mx-auto opacity-0">
+  </div>
+</div>
+
+
+        <!-- NAVIGATION -->
+    <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300" id="main-header">
+        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-bold tracking-tight text-brand-900 flex items-center gap-2">
+                <img src="SULOGO.png" alt="SCALE UP Logo" class="h-8 w-auto object-contain">
+                SCALE UP INC
+            </a>
+            
+            <nav class="hidden md:flex gap-8 items-center">
+                <a href="#about" class="text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">About</a>
+                <a href="#services" class="text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">Services</a>
+                <a href="#faq" class="text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">FAQ</a>
+                <a href="#contact" class="px-5 py-2.5 rounded-full bg-brand-900 text-white text-sm font-medium hover:bg-brand-600 transition-colors">Contact Us</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-600" aria-label="Open Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </header>
+
+
+    <main>
+                <!-- HERO SECTION -->
+        <section id="hero" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+            <!-- Looping Video Background -->
+            <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                class="absolute inset-0 w-full h-full object-cover -z-10 opacity-100"
+            >
+                <source src="japan.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <!-- Overlay for text readability -->
+            <div class="absolute inset-0 bg-black/40 -z-10"></div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="max-w-4xl mx-auto text-center hero-content opacity-0 translate-y-8">
+                    <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight leading-tight mb-8">
+                        Strategic Campaign Analysts Leading Elections<br>
+                        <span class="text-brand-500">with Unbiased Polls</span>
+                    </h1>
+                    <p class="text-xl text-gray-100 mb-10 max-w-2xl mx-auto leading-relaxed">
+                        Leading the Future through Surveys and Data Analytics
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#contact" class="px-8 py-4 bg-brand-500 text-white rounded-lg font-semibold hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/30">Start Analyzing</a>
+                        <a href="#services" class="px-8 py-4 bg-white/20 text-white border border-white rounded-lg font-semibold hover:bg-white/30 transition-all backdrop-blur-sm">Explore Services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="about-text opacity-0 translate-y-8">
+                        
+                        <!-- Card wrapper -->
+                            <div
+                            <div class="group relative h-80 md:h-[25rem] w-full max-w-xl md:max-w-2xl [perspective:1000px] cursor-pointer"
+                            onclick="this.querySelector('[data-card-inner]').classList.toggle('rotate-y-180')"
+                            >
+                            <!-- Inner rotating element -->
+                            <div
+                                data-card-inner
+                                class="relative h-full w-full rounded-xl bg-white shadow-lg transition-transform duration-500 [transform-style:preserve-3d]"
+                            >
+                                <!-- FRONT: English -->
+                                <div class="absolute inset-0 p-6 space-y-6 [backface-visibility:hidden]">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-brand-600 mb-2">Founder</h3>
+                                    <p class="text-gray-600 leading-relaxed">
+                                    Founded by visionary Mayor Lord Arnel Ruanto of Infanta, Quezon, Scale Up emerged
+                                    from a passion to bring science-backed research and analytics to Philippine
+                                    governance and policy-making.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-brand-600 mb-2">Our People</h3>
+                                    <p class="text-gray-600 leading-relaxed">
+                                    Our team includes former Philippine Statistics Authority (PSA) field researchers and a nationwide network of trained enumerators.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-brand-600 mb-2">Our Mission</h3>
+                                    <p class="text-gray-600 leading-relaxed">
+                                    To transform data into actionable insights for government, business, and society.
+                                    </p>
+                                </div>
+                                </div>
+
+                                <!-- BACK: Japanese -->
+                                <div
+                                    class="absolute inset-0 p-6 space-y-6 
+                                            bg-black text-white rounded-xl
+                                            [transform:rotateY(180deg)] [backface-visibility:hidden]"
+                                    >
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-2">Founder</h3>
+                                    <p class="leading-relaxed">
+                                    インファンタ・ケソン市のルアント市長によって設立され、科学的根拠に基づくリサーチと分析をフィリピンの政策立案に導入することを目的としています。
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-2">Our People</h3>
+                                    <p class="leading-relaxed">
+                                    チームはフィリピン統計局の元調査員と、全国に配置されたリサーチャーネットワークで構成されています
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-2">Our Mission</h3>
+                                    <p class="leading-relaxed">
+                                    政府、企業、社会のためにデータを行動可能な洞察に変えること。
+                                    </p>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                    <div class="relative about-image opacity-0 translate-x-8 overflow-hidden">
+                    <div id="aboutCarousel" class="relative">
+                        <!-- Slide 1 -->
+                        <div class="about-slide active">
+                            <img 
+                                src="https://news.outsourceaccelerator.com/wp-content/uploads/2023/05/5-7.png" 
+                                alt="Survey completion dashboard" 
+                                class="rounded-2xl shadow-xl w-full object-cover h-[400px]"
+                                loading="lazy"
+                            >
+                            <div class="absolute -bottom-3 left-2 bg-white p-6 rounded-lg shadow-lg max-w-xs border border-gray-100 hidden md:block" data-speed="1.2">
+                                <div class="text-center text-3xl font-bold text-brand-600">98%</div>
+                                <div class="text-center text-sm text-gray-500">Survey Completion Rate</div>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="about-slide">
+                            <img 
+                                src="https://miro.medium.com/v2/resize:fit:1400/0*1YAwjo9ByzbuJS-9" 
+                                alt="Data accuracy dashboard" 
+                                class="rounded-2xl shadow-xl w-full object-cover h-[400px]"
+                                loading="lazy"
+                            >
+                            <div class="absolute -bottom-3 left-2 bg-white p-6 rounded-lg shadow-lg max-w-xs border border-gray-100 hidden md:block" data-speed="1.2">
+                                <div class="text-center text-3xl font-bold text-brand-600">95%</div>
+                                <div class="text-center text-sm text-gray-500">Data Accuracy Validation</div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="about-slide">
+                            <img 
+                                src="https://upload.wikimedia.org/wikipedia/commons/e/e3/ISO_Logo_%28Red_square%29.svg" 
+                                alt="ISO-style QA workflow diagram" 
+                                class="rounded-2xl shadow-xl w-full object-cover h-[400px]"
+                                loading="lazy"
+                            >
+                            <div class="absolute -bottom-3 left-2 bg-white p-6 rounded-lg shadow-lg max-w-xs border border-gray-100 hidden md:block" data-speed="1.2">
+                                <div class="text-center text-3xl font-bold text-brand-600">ISO QA</div>
+                                <div class="text-center text-sm text-gray-500">Standardized Workflow</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-24 bg-white relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 max-w-2xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our Expertise</h2>
+                    <p class="text-gray-500">Now venturing into Market Research for Businesses</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <article class="service-card group cursor-pointer">
+                        <div class="relative h-64 overflow-hidden rounded-xl mb-6">
+                            <img src="https://cdn.prod.website-files.com/5e182252b1025a15c98521cb/6659e2c09876c9fb6ef7688e_Divisoria%20Grid%20(3).jpg" alt="Public Opinion Polling" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <svg class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                <h3 class="text-xl font-bold">Public Opinion Polling</h3>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed">Scientifically designed surveys that capture citizens' views to guide evidence-based decisions.</p>
+                    </article>
+                    <!-- Service 2 -->
+                    <article class="service-card group cursor-pointer">
+                        <div class="relative h-64 overflow-hidden rounded-xl mb-6">
+                            <img src="https://www.bworldonline.com/wp-content/uploads/2022/10/election-voter.jpg" alt="Voter Behavior Studies" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <svg class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg>
+                                <h3 class="text-xl font-bold">Voter Behavior Studies</h3>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed">Research that analyzes how and why citizens vote, revealing patterns, motivations, and turnout drivers.</p>
+                    </article>
+
+                    <!-- Service 3 -->
+                    <article class="service-card group cursor-pointer">
+                        <div class="relative h-64 overflow-hidden rounded-xl mb-6">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5bdb6f642714e55b84ebe507/1610465338409-4MHN809MKXJOQ8UMHXL3/office-1209640_1920.jpg?format=1500w" alt="Policy Analytics" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <svg class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                                <h3 class="text-xl font-bold">Policy Analytics</h3>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed">Data-driven evaluation of laws and programs to predict impacts, optimize outcomes, and support decisions.</p>
+                    </article>
+
+                    <!-- Service 4 -->
+                    <article class="service-card group cursor-pointer">
+                        <div class="relative h-64 overflow-hidden rounded-xl mb-6">
+                            <img src="https://www.philippinesmarketresearch.com/uploads/sectors/home/678672354e9cd515289458.webp" alt="Market Research & Product Testing" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <svg class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                <h3 class="text-xl font-bold">Market Research & Product Testing</h3>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed">Studies that measure customer needs and test products to refine features, pricing, and positioning.</p>
+                    </article>
+
+                    <!-- Service 5 -->
+                    <article class="service-card group cursor-pointer">
+                        <div class="relative h-64 overflow-hidden rounded-xl mb-6">
+                            <img src="https://mb.com.ph/uploads/imported_images/PR_Image_4c4ba9a3d8.jpg" alt="Sentiment Mapping" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <svg class="w-8 h-8 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
+                                <h3 class="text-xl font-bold">Sentiment Mapping</h3>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed">Visual and analytical tracking of public emotions and opinions across regions, channels, or groups.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="py-24 bg-gray-50">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+                <div class="space-y-4" id="accordion">
+                    <!-- Q1 -->
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden accordion-item">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-slate-800">What is Scale Up?</span>
+                            <span class="transform transition-transform duration-300 icon-plus text-brand-500 text-2xl">+</span>
+                        </button>
+                        <div class="hidden px-6 pb-4 text-gray-600 text-sm">
+                            Strategic Campaign Analysts Leading Elections with Unbiased Polls doing business as Scale Up is a science-backed research and analytics platform dedicated to revolutionizing Philippine governance and policy-making. 
+                            We combine data-driven insights with strategic expertise to deliver measurable results.
+                        </div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden accordion-item">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-slate-800">What services do you offer?</span>
+                            <span class="transform transition-transform duration-300 icon-plus text-brand-500 text-2xl">+</span>
+                        </button>
+                        <div class="hidden px-6 pb-4 text-gray-600 text-sm">
+                            We provide comprehensive research and analytics services including: Quantitative Research, Surveys, Census, Inferential Statistics, Qualitative Research, 
+                            Focus Group Discussions, In-Depth Interviews, Mixed Methods and Combination of Quantitative & Qualitative for holistic insights.
+                        </div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden accordion-item">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-slate-800">How does Scale Up work?</span>
+                            <span class="transform transition-transform duration-300 icon-plus text-brand-500 text-2xl">+</span>
+                        </button>
+                        <div class="hidden px-6 pb-4 text-gray-600 text-sm">
+                            At Scale Up, we focus on Quality, Accuracy, and Honesty. Field researchers required to:
+                            Take geo-tagged, dated, and time-stamped photos of each respondent,
+                            Follow strict verification protocols and Data integrity is our highest priority.
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden accordion-item">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-slate-800">Pricing Structure?</span>
+                            <span class="transform transition-transform duration-300 icon-plus text-brand-500 text-2xl">+</span>
+                        </button>
+                        <div class="hidden px-6 pb-4 text-gray-600 text-sm">
+                            Our pricing depends on the Target Respondents (sample size per person basis), Difficulty of Questions,
+                            Number of Inquiries Involved, Complexity of Survey and Geographical Coverage.
+                        </div>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden accordion-item">
+                        <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" aria-expanded="false">
+                            <span class="font-semibold text-slate-800">Why choose Scale Up?</span>
+                            <span class="transform transition-transform duration-300 icon-plus text-brand-500 text-2xl">+</span>
+                        </button>
+                        <div class="hidden px-6 pb-4 text-gray-600 text-sm">
+                            Proven track record in elections, Trusted partner in commercial and academic research,
+                            Transparent and science-based methodology and Ensuring data you can trust results in decisions you can win with.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+<section id="contact" class="relative bg-slate-900 text-white overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+        <img src="BG.png" alt="Office Background" class="w-full h-full object-cover opacity-100">
+        <div class="absolute inset-0 bg-slate-900/50"></div>
+    </div>
+
+    <div class="container mx-auto relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 min-h-[600px]">
+            
+            <!-- Left: Form (2 columns on large screens) -->
+            <div class="lg:col-span-2 p-8 md:p-16 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/10">
+                <h2 class="text-3xl font-bold mb-2">Get in touch</h2>
+                <p class="text-gray-400 mb-8">Ready to Scale Up? Let's talk.</p>
+                
+                <form id="contact-form" class="space-y-4" novalidate>
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                        <input type="text" id="name" name="name" required class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors" placeholder="Full Name">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                        <input type="email" id="email" name="email" required class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors" placeholder="email@email.com">
+                    </div>
+                    <div>
+                        <label for="company" class="block text-sm font-medium text-gray-300 mb-1">Company</label>
+                        <input type="text" id="company" name="company" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors" placeholder="Company Inc.">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors" placeholder="Tell us about your needs..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-semibold py-3 px-6 rounded-lg transition-all transform active:scale-95 mt-2">Send Message</button>
+                    <div id="form-success" class="hidden text-green-400 text-sm mt-2 text-center">Message sent successfully! We'll be in touch.</div>
+                </form>
+            </div>
+
+            <!-- Right: Contact Info & Map (1 column on large screens) -->
+            <div class="lg:col-span-1 p-8 md:p-16 flex flex-col">
+                <div class="flex flex-col h-full">
+                    <!-- Contact Info Block -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-brand-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                <span>
+                                    501, Draper House, 5048,<br>
+                                    P. Burgos St., Poblacion, Makati City
+                                </span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                                <a href="tel:+15550123456" class="hover:text-brand-400 transition-colors">+63 912 345 6789</a>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-6 h-6 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                <a href="hello@scaleupinc.com" class="hover:text-brand-400 transition-colors">hello@scaleupinc.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Embedded Map -->
+                    <div class="w-full map-container relative flex-grow">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.604191075308!2d121.0309295!3d14.564612799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9a64acacdff%3A0xc6fe5b8359f30ad!2sDraper%20Startup%20House%20for%20Entrepreneurs!5e0!3m2!1sen!2sph!4v1765003177883!5m2!1sen!2sph" 
+                        width="360" height="360" style="border:1;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-50 border-t border-gray-200 py-12">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-sm text-gray-500">
+              &copy; <script>document.write(new Date().getFullYear());</script> SCALE UP INC. All rights reserved.
+          </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-400 hover:text-brand-600 transition-colors" aria-label="Twitter">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-brand-600 transition-colors" aria-label="LinkedIn">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+            </div>
+            <div class="flex gap-6 text-sm">
+                <a href="#" class="text-gray-500 hover:text-brand-600">Privacy Policy</a>
+                <a href="#" class="text-gray-500 hover:text-brand-600">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. HERO INTRO SEQUENCE
+          const masterTl = gsap.timeline();
+
+          // Setup chart drawing state
+          gsap.set("#intro-logo", { scale: 0.5, opacity: 0 });
+          gsap.set("#intro-chart", { strokeDashoffset: 1000, strokeDasharray: 1000 });
+
+          masterTl
+            .to("#intro-logo", { opacity: 1, duration: 0.5, ease: "power2.out" })
+            .to("#intro-chart", { strokeDashoffset: 0, duration: 1.5, ease: "power2.inOut" }, "-=0.2")
+            // Scale logo massive
+            .to("#intro-logo", { scale: 20, opacity: 0, duration: 1, ease: "power3.in" }, "-=0.5")
+            .to("#intro-overlay", { opacity: 0, display: "none", duration: 0.5 })
+            // Animate Hero Content In...
+            .to(".hero-content", { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.3")
+            .to(".hero-dashboard", { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.2)" }, "-=0.6");
+
+
+
+            // 2. ABOUT SECTION ANIMATION
+            gsap.to(".about-text", {
+                scrollTrigger: {
+                    trigger: "#about",
+                    start: "top 80%",
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+
+            gsap.to(".about-image", {
+                scrollTrigger: {
+                    trigger: "#about",
+                    start: "top 80%",
+                },
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                delay: 0.2,
+                ease: "power2.out"
+            });
+
+            // 3. SERVICES STAGGERED REVEAL
+            gsap.from(".service-card", {
+                scrollTrigger: {
+                    trigger: "#services",
+                    start: "top 75%",
+                },
+                y: 100,
+                opacity: 0,
+                stagger: 0.15,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+
+            // 4. FAQ ACCORDION LOGIC
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const button = item.querySelector('button');
+                const content = item.querySelector('div.hidden');
+                const icon = item.querySelector('.icon-plus');
+
+                button.addEventListener('click', () => {
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                    
+                    // Close all others
+                    accordionItems.forEach(otherItem => {
+                        const otherBtn = otherItem.querySelector('button');
+                        const otherContent = otherItem.querySelector('div:not(button)');
+                        const otherIcon = otherItem.querySelector('.icon-plus');
+                        
+                        otherBtn.setAttribute('aria-expanded', 'false');
+                        otherContent.classList.add('hidden');
+                        otherIcon.classList.remove('rotate-45');
+                        otherItem.classList.remove('border-brand-500', 'ring-1', 'ring-brand-500');
+                    });
+
+                    // Toggle current
+                    if (!isExpanded) {
+                        button.setAttribute('aria-expanded', 'true');
+                        content.classList.remove('hidden');
+                        icon.classList.add('rotate-45');
+                        // Highlight active item
+                        item.classList.add('border-brand-500', 'ring-1', 'ring-brand-500');
+                        
+                        // GSAP expand animation
+                        gsap.fromTo(content, 
+                            { height: 0, opacity: 0 }, 
+                            { height: "auto", opacity: 1, duration: 0.3, ease: "power2.out" }
+                        );
+                    }
+                });
+            });
+
+            // 5. CONTACT FORM VALIDATION (Client-side)
+            const form = document.getElementById('contact-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
+                const email = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                // Simple validation check
+                if (!emailRegex.test(email.value)) {
+                    email.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    email.classList.remove('border-red-500');
+                }
+
+                if(form.checkValidity() && isValid) {
+                    // Simulate API call
+                    const btn = form.querySelector('button');
+                    const originalText = btn.innerText;
+                    btn.innerText = 'Sending...';
+                    
+                    setTimeout(() => {
+                        form.reset();
+                        document.getElementById('form-success').classList.remove('hidden');
+                        btn.innerText = originalText;
+                    }, 1500);
+                }
+            });
+        });
+    </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('#aboutCarousel .about-slide');
+    if (!slides.length) return;
+
+    let current = 0;
+    const total = slides.length;
+    const interval = 5000; // 5 seconds
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    showSlide(current);
+
+    setInterval(() => {
+        current = (current + 1) % total;
+        showSlide(current);
+    }, interval);
+});
+</script>
+
+    <!-- CHATBASE -->
+<script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="Opzgt3jrMCMb-uMebu7eV";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+
+</body>
+</html>
