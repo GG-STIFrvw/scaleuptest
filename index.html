@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS (CDN for production-ready utility classes) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,7 +21,7 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Roboto', 'sans-serif'],
+                        sans: ['"Noto Sans JP"', 'Roboto', 'sans-serif'],
                     },
                     colors: {
                         brand: {
@@ -143,6 +144,7 @@
                 <a href="#about" class="text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">About</a>
                 <a href="#services" class="text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">Services</a>
                 <a href="#faq" class="text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">FAQ</a>
+                <a href="indexjp.html" class="text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">🇯🇵</a>
                 <a href="#contact" class="px-5 py-2.5 rounded-full bg-brand-900 text-white text-sm font-medium hover:bg-brand-600 transition-colors">Contact Us</a>
             </nav>
 
@@ -165,7 +167,7 @@
                 playsinline
                 class="absolute inset-0 w-full h-full object-cover -z-10 opacity-100"
             >
-                <source src="japan.mp4" type="video/mp4">
+                <source src="buildings.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             
@@ -207,56 +209,38 @@
                                 class="relative h-full w-full rounded-xl bg-white shadow-lg transition-transform duration-500 [transform-style:preserve-3d]"
                             >
                                 <!-- FRONT: English -->
-                                <div class="absolute inset-0 p-6 space-y-6 [backface-visibility:hidden]">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-brand-600 mb-2">Founder</h3>
-                                    <p class="text-gray-600 leading-relaxed">
-                                    Founded by visionary Mayor Lord Arnel Ruanto of Infanta, Quezon, Scale Up emerged
-                                    from a passion to bring science-backed research and analytics to Philippine
-                                    governance and policy-making.
-                                    </p>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-brand-600 mb-2">Our People</h3>
-                                    <p class="text-gray-600 leading-relaxed">
-                                    Our team includes former Philippine Statistics Authority (PSA) field researchers and a nationwide network of trained enumerators.
-                                    </p>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-brand-600 mb-2">Our Mission</h3>
-                                    <p class="text-gray-600 leading-relaxed">
-                                    To transform data into actionable insights for government, business, and society.
-                                    </p>
-                                </div>
+                                <div class="absolute inset-0 p-5 space-y-4 overflow-hidden [backface-visibility:hidden]">
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-brand-600 mb-1">Founder</h3>
+                                        <p class="text-gray-600 text-sm leading-snug">
+                                        Founded by visionary Mayor Lord Arnel Ruanto of Infanta, Quezon, 
+                                        Scale Up emerged from a passion to bring science-backed research and analytics to Philippine governance and policy-making.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-brand-600 mb-1">Our People</h3>
+                                        <p class="text-gray-600 text-sm leading-snug">
+                                        Our team includes former Philippine Statistics Authority (PSA) 
+                                        field researchers and a nationwide network of trained enumerators.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-brand-600 mb-1">Our Mission</h3>
+                                        <p class="text-gray-600 text-sm leading-snug">
+                                        To transform data into actionable insights for government, business, and society.
+                                        </p>
+                                    </div>
+
                                 </div>
 
-                                <!-- BACK: Japanese -->
-                                <div
-                                    class="absolute inset-0 p-6 space-y-6 
-                                            bg-black text-white rounded-xl
-                                            [transform:rotateY(180deg)] [backface-visibility:hidden]"
-                                    >
-                                <div>
-                                    <h3 class="text-lg font-semibold mb-2">Founder</h3>
-                                    <p class="leading-relaxed">
-                                    インファンタ・ケソン市のルアント市長によって設立され、科学的根拠に基づくリサーチと分析をフィリピンの政策立案に導入することを目的としています。
-                                    </p>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold mb-2">Our People</h3>
-                                    <p class="leading-relaxed">
-                                    チームはフィリピン統計局の元調査員と、全国に配置されたリサーチャーネットワークで構成されています
-                                    </p>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold mb-2">Our Mission</h3>
-                                    <p class="leading-relaxed">
-                                    政府、企業、社会のためにデータを行動可能な洞察に変えること。
-                                    </p>
-                                </div>
+                                <!-- BACK: Logo -->
+                                <div class="absolute inset-0 rounded-xl [transform:rotateY(180deg)] [backface-visibility:hidden] flex items-center justify-center p-3 bg-[url('paper.jpg')] bg-cover bg-center">
+                                    <div class="w-full h-full border-4 border-brand-500 rounded-lg flex items-center justify-center">
+                                        <img src="SULOGO.png" alt="SCALE UP Logo" class="w-32 h-auto object-contain" />
+                                    </div>
                                 </div>
                             </div>
-                            </div>
+                        </div>
                     </div>
                     <div class="relative about-image opacity-0 translate-x-8 overflow-hidden">
                     <div id="aboutCarousel" class="relative">
@@ -495,8 +479,7 @@
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-brand-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                 <span>
-                                    501, Draper House, 5048,<br>
-                                    P. Burgos St., Poblacion, Makati City
+                                    501, Draper House, 5048, P. Burgos St., Poblacion, Makati City
                                 </span>
                             </li>
                             <li class="flex items-center gap-3">
@@ -513,7 +496,7 @@
                     <!-- Embedded Map -->
                     <div class="w-full map-container relative flex-grow">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.604191075308!2d121.0309295!3d14.564612799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9a64acacdff%3A0xc6fe5b8359f30ad!2sDraper%20Startup%20House%20for%20Entrepreneurs!5e0!3m2!1sen!2sph!4v1765003177883!5m2!1sen!2sph" 
-                        width="360" height="360" style="border:1;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        width="100%" height="360" style="border:1;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
