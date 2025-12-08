@@ -41,10 +41,30 @@
         body {
             /* Fix for ScrollTrigger pinning jitter */
             overflow-x: hidden; 
-            background-color: #ffffff;
+            background-color: #fcfaf2;
             color: #0f172a;
+            
         }
+    a, 
+button, 
+.service-card, 
+input[type="submit"], 
+[role="button"] {
+    cursor: url('cursor.cur') 5 5, pointer !important;
+}
 
+/* Ensure the Kunai persists on flip cards and all internal content */
+.group, 
+[data-card-inner], 
+[data-card-inner] *,
+.group * {
+    cursor: url('cursor.cur') 5 5, pointer !important;
+}
+
+/* Specific fix for the cards that use the onclick attribute */
+[onclick] {
+    cursor: url('cursor.cur') 5 5, pointer !important;
+}
         /* Chart Animations */
         .chart-line {
             stroke-dasharray: 1000;
@@ -63,7 +83,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #ffffff;
+            background: #fcfaf2;
             z-index: 9999;
             display: flex;
             align-items: center;
